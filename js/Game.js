@@ -542,7 +542,7 @@ class Game {
         tutorialContent.innerHTML = `
             <h2>HOW TO PLAY</h2>
             <p>
-                SURVIVE FROM 12 AM TO 6 AM. THE CLOCK RUNS FAST — EACH HOUR IS 15 SECONDS.<br><br>
+                SURVIVE FROM 12 AM TO 6 AM. THE CLOCK RUNS FAST — EACH HOUR IS 30 SECONDS.<br><br>
                 • OPEN THE CAMERAS WITH THE CAMERA BUTTON TO TRACK THE ENEMIES.<br>
                 • USE "PLAY SOUND" TO LURE AHMETS AWAY WITH AN AUDIO LURE. LURE FROM A CAMERA NEXT TO AHMETS. DON'T USE THE SAME SPOT MORE THAN TWICE IN A ROW, OR IT WON'T WORK — AND OVERUSING IT BREAKS THE CAMERAS.<br>
                 • IF THE CAMERAS BREAK, GO TO THE CONTROL PANEL AND RESTART THEM.<br>
@@ -738,7 +738,7 @@ class Game {
             if (this.state.currentTime >= 6) {
                 this.winNight();
             }
-        }, 15000);
+        }, 30000);
         
         this.powerInterval = setInterval(() => {
             this.updatePower();
