@@ -56,10 +56,10 @@ class Game {
         
         // Custom Night 元素
         this.customNightMenu = document.getElementById('custom-night-menu');
-        this.epsteinSlider = document.getElementById('epstein-slider');
+        this.ahmetsSlider = document.getElementById('ahmets-slider');
         this.trumpSlider = document.getElementById('trump-slider');
         this.hawkingSlider = document.getElementById('hawking-slider');
-        this.epsteinValue = document.getElementById('epstein-value');
+        this.ahmetsValue = document.getElementById('ahmets-value');
         this.trumpValue = document.getElementById('trump-value');
         this.hawkingValue = document.getElementById('hawking-value');
         this.startCustomNightBtn = document.getElementById('start-custom-night');
@@ -174,8 +174,8 @@ class Game {
         this.backToMenuBtn.addEventListener('click', () => this.hideCustomNightMenu());
         
         // AI滑块事件
-        this.epsteinSlider.addEventListener('input', (e) => {
-            this.epsteinValue.textContent = e.target.value;
+        this.ahmetsSlider.addEventListener('input', (e) => {
+            this.ahmetsValue.textContent = e.target.value;
         });
         this.trumpSlider.addEventListener('input', (e) => {
             this.trumpValue.textContent = e.target.value;
@@ -286,7 +286,7 @@ class Game {
     
     // 开始Custom Night
     async startCustomNight() {
-        const epsteinLevel = parseInt(this.epsteinSlider.value);
+        const ahmetsLevel = parseInt(this.ahmetsSlider.value);
         const trumpLevel = parseInt(this.trumpSlider.value);
         const hawkingLevel = parseInt(this.hawkingSlider.value);
         
@@ -294,7 +294,7 @@ class Game {
         this.state.customNight = true;
         this.state.currentNight = 7; // Custom Night = Night 7
         this.state.customAILevels = {
-            epstein: epsteinLevel,
+            ahmets: ahmetsLevel,
             trump: trumpLevel,
             hawking: hawkingLevel
         };
@@ -543,7 +543,7 @@ class Game {
                 <p>
                     TRUMP WILL TRY TO ATTACK YOU THROUGH THE VENTS IN CAM 1 AND CAM 2, SO IF YOU HEAR BANGING IN THE VENTS HEAD OVER TO THE CONTROL PANEL AND CLOSE THEM. 
                     AFTER CLOSING THEM YOU WILL HEAR BANGING AGAIN AFTER A FEW SECONDS WHICH MEANS HE LEFT THE VENTS. YOU MUST OPEN THE VENTS OTHERWISE YOU WILL DIE FROM LACK OF OXYGEN. 
-                    TRUMP CAN BE LURED WITH THE AUDIOS BUT YOUR MAIN PRIORITY WITH THE AUDIO LURES SHOULD BE EPSTEIN.
+                    TRUMP CAN BE LURED WITH THE AUDIOS BUT YOUR MAIN PRIORITY WITH THE AUDIO LURES SHOULD BE AHMETS.
                 </p>
                 <button id="tutorial-got-it">GOT IT</button>
             `;
@@ -570,14 +570,14 @@ class Game {
         } else {
             // Night 1 教程：EP
             tutorialContent.innerHTML = `
-                <h2>DEFEND YOURSELF AGAINST EPSTEIN</h2>
+                <h2>DEFEND YOURSELF AGAINST AHMETS</h2>
                 <p>
-                    EPSTEIN ALWAYS STARTS AT CAM 11. USE THE CAMERA'S AUDIO LURE TO KEEP EPSTEIN FAR AWAY FROM YOU. 
-                    MAKE SURE THE CAMERA YOU'RE PLAYING THE SOUND IN IS NEXT TO THE CAMERA WHERE EPSTEIN IS. 
+                    AHMETS ALWAYS STARTS AT CAM 11. USE THE CAMERA'S AUDIO LURE TO KEEP AHMETS FAR AWAY FROM YOU. 
+                    MAKE SURE THE CAMERA YOU'RE PLAYING THE SOUND IN IS NEXT TO THE CAMERA WHERE AHMETS IS. 
                     PLAYING SOUND IN ONLY ONE SPOT WILL NOT WORK IF YOU DO IT TWICE OR MORE IN A ROW. 
                     USING THE AUDIO LURE TOO MUCH WILL LEAD TO THE CAMERAS BREAKING. 
                     TO FIX THEM HEAD TO THE CONTROL PANEL AND RESTART THE CAMERAS LIKE YOU JUST DID. 
-                    EPSTEIN DOES NOT ATTACK THROUGH THE VENTS SO DON'T BOTHER CLOSING THEM FOR THIS NIGHT.
+                    AHMETS DOES NOT ATTACK THROUGH THE VENTS SO DON'T BOTHER CLOSING THEM FOR THIS NIGHT.
                 </p>
                 <button id="tutorial-got-it">GOT IT</button>
             `;
@@ -901,7 +901,7 @@ class Game {
         // 检查是否通关20/20/20 Custom Night
         if (this.state.customNight && this.state.currentNight === 7) {
             const levels = this.state.customAILevels;
-            if (levels.epstein === 20 && levels.trump === 20 && levels.hawking === 20) {
+            if (levels.ahmets === 20 && levels.trump === 20 && levels.hawking === 20) {
                 console.log('🌟 20/20/20 Custom Night completed!');
                 localStorage.setItem('customNight202020', 'true');
             }
