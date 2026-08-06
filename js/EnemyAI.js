@@ -313,17 +313,17 @@ class EnemyAI {
         
         // 每个摄像头的角色位置配置（CSS定位）
         this.characterPositions = {
-            'cam11': { left: '57.1%', bottom: '0%', width: '29%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam10': { left: '73.8%', bottom: '1.6%', width: '89.2%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam1': { left: '39.9%', bottom: '35.3%', width: '38.8%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam9': { left: '18.5%', bottom: '0%', width: '29.6%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam8': { left: '96.1%', bottom: '0%', width: '29.6%', transform: 'translateX(-50%) rotate(-23deg)' },
-            'cam7': { left: '49.7%', bottom: '0%', width: '29.6%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam6': { left: '16.6%', bottom: '0%', width: '29.6%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam5': { left: '71.1%', bottom: '0%', width: '29.6%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam4': { left: '91.4%', bottom: '6.8%', width: '66.9%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam3': { left: '7.4%', bottom: '5%', width: '66.9%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam2': { left: '39.6%', bottom: '27.7%', width: '37.8%', transform: 'translateX(-50%) rotate(-139deg)' },
+            'cam11': { left: '57.1%', bottom: '0%', width: '17.4%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam10': { left: '73.8%', bottom: '1.6%', width: '53.5%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam1': { left: '39.9%', bottom: '35.3%', width: '23.3%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam9': { left: '18.5%', bottom: '0%', width: '17.8%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam8': { left: '96.1%', bottom: '0%', width: '17.8%', transform: 'translateX(-50%) rotate(-23deg)' },
+            'cam7': { left: '49.7%', bottom: '0%', width: '17.8%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam6': { left: '16.6%', bottom: '0%', width: '17.8%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam5': { left: '71.1%', bottom: '0%', width: '17.8%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam4': { left: '91.4%', bottom: '6.8%', width: '40.1%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam3': { left: '7.4%', bottom: '5%', width: '40.1%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam2': { left: '39.6%', bottom: '27.7%', width: '22.7%', transform: 'translateX(-50%) rotate(-139deg)' },
         };
         
         // 角色明暗度配置（百分比）
@@ -406,17 +406,17 @@ class EnemyAI {
         
         // 特朗普的位置配置（使用调试工具设置）
         this.trumpPositions = {
-            'cam10': { left: '10%', bottom: '0%', width: '40%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam11': { left: '38.2%', bottom: '0%', width: '40%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam9': { left: '0%', bottom: '34.6%', width: '13.9%', transform: 'translateX(-50%) rotate(44deg)' },
-            'cam8': { left: '1.5%', bottom: '24.5%', width: '20.1%', transform: 'translateX(-50%) rotate(58deg)' },
-            'cam7': { left: '7.4%', bottom: '0%', width: '41.4%', transform: 'translateX(-50%) rotate(1deg)' },
-            'cam6': { left: '86.3%', bottom: '0%', width: '41.4%', transform: 'translateX(-50%) rotate(1deg)' },
-            'cam5': { left: '0%', bottom: '0%', width: '29.3%', transform: 'translateX(-50%) rotate(1deg)' },
-            'cam1': { left: '10.8%', bottom: '15%', width: '31.6%', transform: 'translateX(-50%) rotate(1deg)' },
-            'cam2': { left: '77.2%', bottom: '32.3%', width: '31.6%', transform: 'translateX(-50%) rotate(1deg)' },
-            'cam3': { left: '100%', bottom: '21.4%', width: '32.9%', transform: 'translateX(-50%) rotate(-62deg)' },
-            'cam4': { left: '11%', bottom: '0%', width: '31.6%', transform: 'translateX(-50%) rotate(1deg)' },
+            'cam10': { left: '10%', bottom: '0%', width: '24.0%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam11': { left: '38.2%', bottom: '0%', width: '24.0%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam9': { left: '0%', bottom: '34.6%', width: '8.3%', transform: 'translateX(-50%) rotate(44deg)' },
+            'cam8': { left: '1.5%', bottom: '24.5%', width: '12.1%', transform: 'translateX(-50%) rotate(58deg)' },
+            'cam7': { left: '7.4%', bottom: '0%', width: '24.8%', transform: 'translateX(-50%) rotate(1deg)' },
+            'cam6': { left: '86.3%', bottom: '0%', width: '24.8%', transform: 'translateX(-50%) rotate(1deg)' },
+            'cam5': { left: '0%', bottom: '0%', width: '17.6%', transform: 'translateX(-50%) rotate(1deg)' },
+            'cam1': { left: '10.8%', bottom: '15%', width: '19.0%', transform: 'translateX(-50%) rotate(1deg)' },
+            'cam2': { left: '77.2%', bottom: '32.3%', width: '19.0%', transform: 'translateX(-50%) rotate(1deg)' },
+            'cam3': { left: '100%', bottom: '21.4%', width: '19.7%', transform: 'translateX(-50%) rotate(-62deg)' },
+            'cam4': { left: '11%', bottom: '0%', width: '19.0%', transform: 'translateX(-50%) rotate(1deg)' },
         };
         
         // 特朗普的明暗度配置
