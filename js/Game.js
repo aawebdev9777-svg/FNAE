@@ -29,6 +29,7 @@ class Game {
         this.gameOverText = document.getElementById('game-over-text');
         this.tutorialOverlay = document.getElementById('tutorial-overlay');
         this.tutorialGotItBtn = document.getElementById('tutorial-got-it');
+        this.howToPlayBtn = document.getElementById('how-to-play');
         
         this.startBtn = document.getElementById('start-game');
         this.continueBtn = document.getElementById('continue-game');
@@ -168,6 +169,9 @@ class Game {
         });
         this.mainMenuBtn.addEventListener('click', () => this.showMainMenu());
         this.tutorialGotItBtn.addEventListener('click', () => this.closeTutorial());
+        if (this.howToPlayBtn) {
+            this.howToPlayBtn.addEventListener('click', () => this.showMainMenuTutorial());
+        }
         
         // Custom Night 事件
         this.startCustomNightBtn.addEventListener('click', () => this.startCustomNight());
@@ -532,7 +536,32 @@ class Game {
         }
     }
     
-    showTutorial(type = 'night1') {
+    showMainMenuTutorial() {
+        const tutorialContent = document.getElementById('tutorial-content');
+        if (!tutorialContent) return;
+        tutorialContent.innerHTML = `
+            <h2>HOW TO PLAY</h2>
+            <p>
+                SURVIVE FROM 12 AM TO 6 AM. THE CLOCK RUNS FAST — EACH HOUR IS 30 SECONDS.<br><br>
+                • OPEN THE CAMERAS WITH THE CAMERA BUTTON TO TRACK THE ENEMIES.<br>
+                • USE "PLAY SOUND" TO LURE AHMETS AWAY WITH AN AUDIO LURE. LURE FROM A CAMERA NEXT TO AHMETS. DON'T USE THE SAME SPOT MORE THAN TWICE IN A ROW, OR IT WON'T WORK — AND OVERUSING IT BREAKS THE CAMERAS.<br>
+                • IF THE CAMERAS BREAK, GO TO THE CONTROL PANEL AND RESTART THEM.<br>
+                • TRUMP (NIGHT 2+) ATTACKS THROUGH THE VENTS. CLOSE THE VENTS WHEN YOU HEAR BANGING, THEN OPEN THEM AGAIN OR YOU'LL RUN OUT OF OXYGEN.<br>
+                • STEPHEN HAWKING (NIGHT 3+) STAYS AT CAM 6 AND IGNORES AUDIO. OPEN CAM 6 AND HIT "ELECTROCUTE" NOW AND THEN TO KEEP HIM THERE.<br>
+                • OXYGEN ACTS LIKE YOUR POWER — KEEP VENTS OPEN TO REFILL IT.<br>
+                GOOD LUCK.
+            </p>
+            <button id="tutorial-got-it">GOT IT</button>
+        `;
+        const gotItBtn = document.getElementById('tutorial-got-it');
+        if (gotItBtn) {
+            gotItBtn.addEventListener('click', () => this.closeTutorial());
+        }
+        this.tutorialOverlay.classList.remove('hidden');
+        this.state.tutorialActive = true;
+    }
+    
+        showTutorial(type = 'night1') {
         const tutorialContent = document.getElementById('tutorial-content');
         if (!tutorialContent) return;
         
@@ -709,7 +738,7 @@ class Game {
             if (this.state.currentTime >= 6) {
                 this.winNight();
             }
-        }, 60000);
+        }, 30000);
         
         this.powerInterval = setInterval(() => {
             this.updatePower();
