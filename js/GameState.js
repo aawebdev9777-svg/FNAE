@@ -19,7 +19,7 @@ class GameState {
         // Custom Night 状态
         this.customNight = false; // 是否为自定义夜晚
         this.customAILevels = {
-            epstein: 0,
+            ahmets: 0,
             trump: 0,
             hawking: 0
         };
