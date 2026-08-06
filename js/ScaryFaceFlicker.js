@@ -8,7 +8,6 @@ const getBasePath = () => {
 };
 
 const basePath = getBasePath();
-const normalBackground = `${basePath}assets/images/menubackground.png`;
 const scaryBackgrounds = [
     `${basePath}assets/images/scaryhawk.png`,
     `${basePath}assets/images/scaryep.png`,
@@ -20,10 +19,6 @@ const preloadedImages = {};
 
 // 预加载所有背景图片
 function preloadBackgrounds() {
-    const normalImg = new Image();
-    normalImg.src = normalBackground;
-    preloadedImages['normal'] = normalImg;
-    
     scaryBackgrounds.forEach((bg, index) => {
         const img = new Image();
         img.src = bg;
@@ -48,7 +43,7 @@ function startScaryFaceFlicker() {
             
             const hideDelay = 50 + Math.random() * 150;
             setTimeout(() => {
-                mainMenu.style.backgroundImage = `url('${normalBackground}')`;
+                mainMenu.style.backgroundImage = '';
             }, hideDelay);
         }
     }, 100);
@@ -61,7 +56,7 @@ function stopScaryFaceFlicker() {
         
         const mainMenu = document.getElementById('main-menu');
         if (mainMenu) {
-            mainMenu.style.backgroundImage = `url('${normalBackground}')`;
+            mainMenu.style.backgroundImage = '';
         }
     }
 }
