@@ -313,17 +313,17 @@ class EnemyAI {
         
         // 每个摄像头的角色位置配置（CSS定位）
         this.characterPositions = {
-            'cam11': { left: '57.1%', bottom: '0%', width: '4.5%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam10': { left: '73.8%', bottom: '1.6%', width: '13.4%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam1': { left: '39.9%', bottom: '35.3%', width: '5.9%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam9': { left: '18.5%', bottom: '0%', width: '4.5%', transform: 'translateX(-50%) rotate(0deg)' },
-            'cam8': { left: '96.1%', bottom: '0%', width: '4.5%', transform: 'translateX(-50%) rotate(-23deg)' },
-            'cam7': { left: '49.7%', bottom: '0%', width: '4.5%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam6': { left: '16.6%', bottom: '0%', width: '4.5%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam5': { left: '71.1%', bottom: '0%', width: '4.5%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam4': { left: '91.4%', bottom: '6.8%', width: '10.1%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam3': { left: '7.4%', bottom: '5%', width: '10.1%', transform: 'translateX(-50%) rotate(-5deg)' },
-            'cam2': { left: '39.6%', bottom: '27.7%', width: '5.7%', transform: 'translateX(-50%) rotate(-139deg)' },
+            'cam11': { left: '57.1%', bottom: '0%', width: '8%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam10': { left: '73.8%', bottom: '1.6%', width: '15%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam1': { left: '39.9%', bottom: '35.3%', width: '9.5%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam9': { left: '18.5%', bottom: '0%', width: '8%', transform: 'translateX(-50%) rotate(0deg)' },
+            'cam8': { left: '96.1%', bottom: '0%', width: '8%', transform: 'translateX(-50%) rotate(-23deg)' },
+            'cam7': { left: '49.7%', bottom: '0%', width: '8%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam6': { left: '16.6%', bottom: '0%', width: '8%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam5': { left: '71.1%', bottom: '0%', width: '8%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam4': { left: '91.4%', bottom: '6.8%', width: '12%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam3': { left: '7.4%', bottom: '5%', width: '12%', transform: 'translateX(-50%) rotate(-5deg)' },
+            'cam2': { left: '39.6%', bottom: '27.7%', width: '9.5%', transform: 'translateX(-50%) rotate(-139deg)' },
         };
         
         // 角色明暗度配置（百分比）
