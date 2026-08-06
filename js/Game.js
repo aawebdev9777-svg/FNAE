@@ -278,6 +278,7 @@ class Game {
     
     // 显示Custom Night菜单
     showCustomNightMenu() {
+        if (window.GameBridge && !GameBridge.requireLogin(() => this.showCustomNightMenu())) return;
         this.mainMenu.classList.add('hidden');
         this.customNightMenu.classList.remove('hidden');
     }
@@ -290,6 +291,7 @@ class Game {
     
     // 开始Custom Night
     async startCustomNight() {
+        if (window.GameBridge && !GameBridge.requireLogin(() => this.startCustomNight())) return;
         const ahmetsLevel = parseInt(this.ahmetsSlider.value);
         const trumpLevel = parseInt(this.trumpSlider.value);
         const hawkingLevel = parseInt(this.hawkingSlider.value);
@@ -331,6 +333,7 @@ class Game {
     
     // Continue游戏（从保存的关卡开始）
     async continueGame() {
+        if (window.GameBridge && !GameBridge.requireLogin(() => this.continueGame())) return;
         if (this.loadProgress()) {
             this.mainMenu.classList.add('hidden');
             
@@ -359,6 +362,7 @@ class Game {
     
     // 开始特殊夜晚（Night 6）
     async startSpecialNight() {
+        if (window.GameBridge && !GameBridge.requireLogin(() => this.startSpecialNight())) return;
         this.state.currentNight = 6; // 设置为Night 6
         this.clearProgress(); // 清除普通进度
         
@@ -387,6 +391,7 @@ class Game {
     }
 
     async startGame() {
+        if (window.GameBridge && !GameBridge.requireLogin(() => this.startGame())) return;
         // NEW GAME总是从Night 1开始
         this.state.currentNight = 1;
         this.clearProgress(); // 清除之前的进度
@@ -874,6 +879,7 @@ class Game {
     }
     
     gameOver(message) {
+        if (window.GameBridge) GameBridge.submitScore({ night: this.state.currentNight, result: 'lose', power: Math.round(this.state.oxygen) });
         this.stopGame();
         this.assets.stopSound('ambient');
         
@@ -908,6 +914,7 @@ class Game {
     }
 
     winNight() {
+        if (window.GameBridge) GameBridge.submitScore({ night: this.state.currentNight, result: 'win', power: Math.round(this.state.oxygen) });
         this.stopGame();
         this.assets.stopSound('ambient');
         
