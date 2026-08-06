@@ -4,8 +4,8 @@ class EnemyAI {
         this.game = game;
         
         // ==================== AI配置系统 ====================
-        // Epstein AI配置（按夜数）
-        this.epsteinConfig = {
+        // Ahmets AI配置（按夜数）
+        this.ahmetsConfig = {
             1: {
                 aiLevel: 12,              // AI等级 (0-20)，12/20 = 60%移动概率
                 movementInterval: [9000, 10000],  // 移动检查间隔（毫秒）[最小值, 最大值]
@@ -165,11 +165,11 @@ class EnemyAI {
         };
         
         // 当前配置（运行时使用）
-        this.currentEpsteinConfig = null;
+        this.currentAhmetsConfig = null;
         this.currentTrumpConfig = null;
         
         // 爱泼斯坦的状态
-        this.epstein = {
+        this.ahmets = {
             currentLocation: 'cam11', // 起始位置（最远）
             aiLevel: 0, // AI等级 (0-20)
             movementTimer: null,
@@ -457,19 +457,19 @@ class EnemyAI {
         // 根据夜数加载配置并设置AI等级
         this.loadAIConfig();
         
-        console.log(`Night ${this.game.state.currentNight} - Epstein AI Config:`, this.currentEpsteinConfig);
-        console.log(`Epstein will spawn in ${this.currentEpsteinConfig.spawnDelay / 1000} seconds...`);
+        console.log(`Night ${this.game.state.currentNight} - Ahmets AI Config:`, this.currentAhmetsConfig);
+        console.log(`Ahmets will spawn in ${this.currentAhmetsConfig.spawnDelay / 1000} seconds...`);
         
         // 根据配置延迟后EP出场（如果AI等级>0）
-        if (this.epstein.aiLevel > 0) {
+        if (this.ahmets.aiLevel > 0) {
             const spawnTimer = setTimeout(() => {
-                console.log(`⏰ Spawn timer triggered after ${this.currentEpsteinConfig.spawnDelay}ms`);
-                this.spawnEpstein();
-            }, this.currentEpsteinConfig.spawnDelay);
+                console.log(`⏰ Spawn timer triggered after ${this.currentAhmetsConfig.spawnDelay}ms`);
+                this.spawnAhmets();
+            }, this.currentAhmetsConfig.spawnDelay);
             
             console.log(`⏰ Spawn timer created:`, spawnTimer);
         } else {
-            console.log('Epstein AI level is 0, not spawning');
+            console.log('Ahmets AI level is 0, not spawning');
         }
         
         // Trump出场逻辑
@@ -504,9 +504,9 @@ class EnemyAI {
         if (this.game.state.customNight && night === 7) {
             const customLevels = this.game.state.customAILevels;
             
-            // Epstein 自定义配置
-            this.currentEpsteinConfig = {
-                aiLevel: customLevels.epstein,
+            // Ahmets 自定义配置
+            this.currentAhmetsConfig = {
+                aiLevel: customLevels.ahmets,
                 movementInterval: [9000, 10000],
                 movementDuration: 1000,
                 spawnDelay: 0,
@@ -517,8 +517,8 @@ class EnemyAI {
                 },
                 soundLureResistance: 0.15
             };
-            this.epstein.aiLevel = customLevels.epstein;
-            this.epstein.movementInterval = this.getRandomInterval(this.currentEpsteinConfig.movementInterval);
+            this.ahmets.aiLevel = customLevels.ahmets;
+            this.ahmets.movementInterval = this.getRandomInterval(this.currentAhmetsConfig.movementInterval);
             
             // Trump 自定义配置
             if (customLevels.trump > 0) {
@@ -552,7 +552,7 @@ class EnemyAI {
             // Hawking 的 AI 等级不影响移动，只影响是否激活
             
             console.log(`Custom Night AI Config loaded:`);
-            console.log(`- Epstein: Level ${this.epstein.aiLevel}`);
+            console.log(`- Ahmets: Level ${this.ahmets.aiLevel}`);
             console.log(`- Trump: Level ${this.trump.aiLevel || 0}`);
             console.log(`- Hawking: Level ${customLevels.hawking}`);
             
@@ -560,10 +560,10 @@ class EnemyAI {
         }
         
         // 普通夜晚配置
-        // 加载Epstein配置
-        this.currentEpsteinConfig = this.epsteinConfig[night] || this.epsteinConfig[1];
-        this.epstein.aiLevel = this.currentEpsteinConfig.aiLevel;
-        this.epstein.movementInterval = this.getRandomInterval(this.currentEpsteinConfig.movementInterval);
+        // 加载Ahmets配置
+        this.currentAhmetsConfig = this.ahmetsConfig[night] || this.ahmetsConfig[1];
+        this.ahmets.aiLevel = this.currentAhmetsConfig.aiLevel;
+        this.ahmets.movementInterval = this.getRandomInterval(this.currentAhmetsConfig.movementInterval);
         
         // 加载Trump配置（Night 2-5）
         if (night >= 2 && night <= 5) {
@@ -575,7 +575,7 @@ class EnemyAI {
         }
         
         console.log(`AI Config loaded for Night ${night}`);
-        console.log(`- Epstein: Level ${this.epstein.aiLevel}, Interval ${this.epstein.movementInterval}ms`);
+        console.log(`- Ahmets: Level ${this.ahmets.aiLevel}, Interval ${this.ahmets.movementInterval}ms`);
         if (this.currentTrumpConfig) {
             console.log(`- Trump: Level ${this.trump.aiLevel}, Interval ${this.trump.movementInterval}ms`);
         } else {
@@ -595,11 +595,11 @@ class EnemyAI {
     }
     
     // EP出场
-    spawnEpstein() {
-        if (this.epstein.hasSpawned) return;
+    spawnAhmets() {
+        if (this.ahmets.hasSpawned) return;
         
-        this.epstein.hasSpawned = true;
-        console.log('✅ Epstein has spawned!');
+        this.ahmets.hasSpawned = true;
+        console.log('✅ Ahmets has spawned!');
         
         // 第一关触发摄像头故障，第二关及以后不触发
         if (this.game.state.currentNight === 1) {
@@ -628,9 +628,9 @@ class EnemyAI {
 
     // 停止AI
     stop() {
-        if (this.epstein.movementTimer) {
-            clearTimeout(this.epstein.movementTimer);  // 改为 clearTimeout
-            this.epstein.movementTimer = null;
+        if (this.ahmets.movementTimer) {
+            clearTimeout(this.ahmets.movementTimer);  // 改为 clearTimeout
+            this.ahmets.movementTimer = null;
         }
         if (this.trump.movementTimer) {
             clearTimeout(this.trump.movementTimer);    // 改为 clearTimeout
@@ -667,11 +667,11 @@ class EnemyAI {
         // 使用 setTimeout 而不是 setInterval，以支持动态间隔
         const scheduleNextCheck = () => {
             // Night 4特殊机制：4AM后EP变得更激进
-            let currentConfig = this.currentEpsteinConfig;
+            let currentConfig = this.currentAhmetsConfig;
             if (this.game.state.currentNight === 4 && this.game.state.currentTime >= 4) {
                 // 4AM后使用更激进的配置
                 currentConfig = {
-                    ...this.currentEpsteinConfig,
+                    ...this.currentAhmetsConfig,
                     movementInterval: [8000, 10000],
                     movementProbability: {
                         forward: 1.0,
@@ -684,7 +684,7 @@ class EnemyAI {
             // 从配置区间中随机选择下一次检查的间隔
             const nextInterval = this.getRandomInterval(currentConfig.movementInterval);
             
-            this.epstein.movementTimer = setTimeout(() => {
+            this.ahmets.movementTimer = setTimeout(() => {
                 this.checkMovement();
                 // 递归调度下一次检查
                 scheduleNextCheck();
@@ -731,19 +731,19 @@ class EnemyAI {
     // 检查是否移动（FNAF机制）
     checkMovement() {
         // 如果还未出场，不移动
-        if (!this.epstein.hasSpawned) return;
+        if (!this.ahmets.hasSpawned) return;
         
         // 如果AI等级为0，不移动
-        if (this.epstein.aiLevel === 0) return;
+        if (this.ahmets.aiLevel === 0) return;
         
         // 如果已经在办公室，不再移动
-        if (this.epstein.currentLocation === 'office') return;
+        if (this.ahmets.currentLocation === 'office') return;
         
         // 生成随机数 1-20
         const randomNumber = Math.floor(Math.random() * 20) + 1;
         
         // 如果随机数 <= AI等级，移动成功
-        if (randomNumber <= this.epstein.aiLevel) {
+        if (randomNumber <= this.ahmets.aiLevel) {
             this.moveToNextLocation();
         }
     }
@@ -770,14 +770,14 @@ class EnemyAI {
 
     // 移动到下一个位置（支持前进、平移、后退）
     moveToNextLocation() {
-        const currentLoc = this.epstein.currentLocation;
+        const currentLoc = this.ahmets.currentLocation;
         const currentDepth = this.locationDepth[currentLoc];
         
         // Night 4特殊机制：4AM后EP变得更激进
-        let config = this.currentEpsteinConfig;
+        let config = this.currentAhmetsConfig;
         if (this.game.state.currentNight === 4 && this.game.state.currentTime >= 4) {
             config = {
-                ...this.currentEpsteinConfig,
+                ...this.currentAhmetsConfig,
                 movementProbability: {
                     forward: 1.0,
                     lateral: 0.0,
@@ -785,9 +785,9 @@ class EnemyAI {
                 }
             };
             // 只在第一次触发时显示日志
-            if (!this.epstein.night4AggressiveMode) {
+            if (!this.ahmets.night4AggressiveMode) {
                 console.log('⚡ Night 4: 4AM reached! EP is now in aggressive mode (forward only)');
-                this.epstein.night4AggressiveMode = true;
+                this.ahmets.night4AggressiveMode = true;
             }
         }
         
@@ -809,9 +809,9 @@ class EnemyAI {
         
         // 如果当前步长是1且没有前进位置，尝试移动到office
         if (forwardLocations.length === 0 && currentDepth === 1) {
-            console.log(`Epstein moved: ${currentLoc} -> office`);
-            this.epstein.currentLocation = 'office';
-            this.triggerJumpscare('epstein');
+            console.log(`Ahmets moved: ${currentLoc} -> office`);
+            this.ahmets.currentLocation = 'office';
+            this.triggerJumpscare('ahmets');
             return;
         }
         
@@ -821,7 +821,7 @@ class EnemyAI {
         
         // 如果总概率为0或没有任何可移动位置，不移动
         if (totalProb === 0 || (forwardLocations.length === 0 && lateralLocations.length === 0 && backwardLocations.length === 0)) {
-            console.log(`Epstein has no valid path from ${currentLoc}`);
+            console.log(`Ahmets has no valid path from ${currentLoc}`);
             return;
         }
         
@@ -861,7 +861,7 @@ class EnemyAI {
                 selectedLocations = backwardLocations;
                 movementType = 'backward (fallback)';
             } else {
-                console.log(`Epstein has no valid path from ${currentLoc}`);
+                console.log(`Ahmets has no valid path from ${currentLoc}`);
                 return;
             }
         }
@@ -869,16 +869,16 @@ class EnemyAI {
         // 从选中的方向中随机选择一个位置
         const nextLocation = selectedLocations[Math.floor(Math.random() * selectedLocations.length)];
         
-        console.log(`Epstein moved [${movementType}]: ${currentLoc} (depth ${currentDepth}) -> ${nextLocation} (depth ${this.locationDepth[nextLocation]})`);
+        console.log(`Ahmets moved [${movementType}]: ${currentLoc} (depth ${currentDepth}) -> ${nextLocation} (depth ${this.locationDepth[nextLocation]})`);
         
-        this.epstein.currentLocation = nextLocation;
+        this.ahmets.currentLocation = nextLocation;
         
         // 播放移动音效
         this.game.assets.playSound('blip', false, 0.5);
         
         // 如果到达办公室，触发游戏结束
         if (nextLocation === 'office') {
-            this.triggerJumpscare('epstein');
+            this.triggerJumpscare('ahmets');
             return;
         }
         
@@ -1193,16 +1193,16 @@ class EnemyAI {
         let trumpAttracted = false;
         
         // 尝试吸引EP
-        const epCurrentLoc = this.epstein.currentLocation;
+        const epCurrentLoc = this.ahmets.currentLocation;
         const adjacentToEp = this.adjacentRooms[epCurrentLoc];
         
-        if (this.epstein.hasSpawned && adjacentToEp && adjacentToEp.includes(soundLocation)) {
+        if (this.ahmets.hasSpawned && adjacentToEp && adjacentToEp.includes(soundLocation)) {
             // 根据配置检查是否抵抗sound吸引
-            const resistance = this.currentEpsteinConfig.soundLureResistance;
+            const resistance = this.currentAhmetsConfig.soundLureResistance;
             if (resistance > 0) {
                 const failChance = Math.random();
                 if (failChance < resistance) {
-                    console.log(`Epstein resisted the sound lure! (${resistance * 100}% chance on Night ${this.game.state.currentNight})`);
+                    console.log(`Ahmets resisted the sound lure! (${resistance * 100}% chance on Night ${this.game.state.currentNight})`);
                     // 吸引失败，但仍然播放音效让玩家以为成功了
                     this.game.assets.playSound('blip', false, 0.5);
                     return false; // 返回false表示没有真正吸引到
@@ -1212,21 +1212,21 @@ class EnemyAI {
             // 吸引成功，EP移动到sound位置（可以前进或后退）
             const currentDepth = this.locationDepth[epCurrentLoc];
             const soundDepth = this.locationDepth[soundLocation];
-            console.log(`Epstein attracted by sound: ${epCurrentLoc} (depth ${currentDepth}) -> ${soundLocation} (depth ${soundDepth})`);
+            console.log(`Ahmets attracted by sound: ${epCurrentLoc} (depth ${currentDepth}) -> ${soundLocation} (depth ${soundDepth})`);
             
-            this.epstein.currentLocation = soundLocation;
+            this.ahmets.currentLocation = soundLocation;
             
             // 播放移动音效
             this.game.assets.playSound('blip', false, 0.5);
             
             // 如果到达办公室，触发游戏结束
             if (soundLocation === 'office') {
-                this.triggerJumpscare('epstein');
+                this.triggerJumpscare('ahmets');
             }
             
             epAttracted = true;
         } else {
-            console.log(`Sound at ${soundLocation} is not adjacent to Epstein at ${epCurrentLoc}`);
+            console.log(`Sound at ${soundLocation} is not adjacent to Ahmets at ${epCurrentLoc}`);
         }
         
         // 尝试吸引Trump（如果已出场且不在爬行状态）
@@ -1285,7 +1285,7 @@ class EnemyAI {
     }
 
     // 触发跳杀
-    triggerJumpscare(enemy = 'epstein') {
+    triggerJumpscare(enemy = 'ahmets') {
         console.log(`JUMPSCARE by ${enemy}!`);
         this.stop();
         
@@ -1381,7 +1381,7 @@ class EnemyAI {
 
     // 获取当前位置
     getCurrentLocation() {
-        return this.epstein.currentLocation;
+        return this.ahmets.currentLocation;
     }
     
     // 获取当前EP的图片（根据夜数选择是否带电眼）
@@ -1406,15 +1406,15 @@ class EnemyAI {
     reset() {
         this.stop();
         
-        // 重置 Epstein
-        this.epstein.currentLocation = 'cam11';
-        this.epstein.aiLevel = 0;
-        this.epstein.hasMovedOnce = false;
-        this.epstein.hasSpawned = false;
-        this.epstein.night4AggressiveMode = false; // 重置Night 4激进模式标志
-        if (this.epstein.timer) {
-            clearTimeout(this.epstein.timer);
-            this.epstein.timer = null;
+        // 重置 Ahmets
+        this.ahmets.currentLocation = 'cam11';
+        this.ahmets.aiLevel = 0;
+        this.ahmets.hasMovedOnce = false;
+        this.ahmets.hasSpawned = false;
+        this.ahmets.night4AggressiveMode = false; // 重置Night 4激进模式标志
+        if (this.ahmets.timer) {
+            clearTimeout(this.ahmets.timer);
+            this.ahmets.timer = null;
         }
         
         // 重置 Trump
