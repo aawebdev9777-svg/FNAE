@@ -415,7 +415,7 @@ class CameraSystem {
         characterOverlay.innerHTML = '';
         
         console.log('🔍 Character overlay cleared, checking EP display conditions...');
-        console.log('🔍 EP hasSpawned:', this.game.enemyAI.epstein.hasSpawned);
+        console.log('🔍 EP hasSpawned:', this.game.enemyAI.ahmets.hasSpawned);
         console.log('🔍 EP location matches current cam:', epLocation === currentCam);
         console.log('🔍 Has characterImages:', !!this.characterImages);
         console.log('🔍 Has image for current cam:', this.characterImages ? !!this.characterImages[currentCam] : 'N/A');
@@ -439,7 +439,7 @@ class CameraSystem {
         
         // 显示 EP（如果已出场且在当前摄像头）
         // console.log('🔍 EP Display Check:', {
-        //     hasSpawned: this.game.enemyAI.epstein.hasSpawned,
+        //     hasSpawned: this.game.enemyAI.ahmets.hasSpawned,
         //     epLocation: epLocation,
         //     currentCam: currentCam,
         //     match: epLocation === currentCam,
@@ -447,7 +447,7 @@ class CameraSystem {
         //     imageForCam: this.characterImages ? !!this.characterImages[currentCam] : 'N/A'
         // });
         
-        if (this.game.enemyAI.epstein.hasSpawned && epLocation === currentCam && this.characterImages && this.characterImages[currentCam]) {
+        if (this.game.enemyAI.ahmets.hasSpawned && epLocation === currentCam && this.characterImages && this.characterImages[currentCam]) {
             // 创建EP容器（用于包含EP图片和电眼）
             const epContainer = document.createElement('div');
             epContainer.className = 'ep-container';
@@ -686,7 +686,7 @@ class CameraSystem {
                 
                 // 增加该位置的计数
                 this.locationAttractCount[currentCam] = (this.locationAttractCount[currentCam] || 0) + 1;
-                console.log(`Epstein attracted to ${currentCam}! Count: ${this.locationAttractCount[currentCam]}/${this.maxLocationAttractCount}`);
+                console.log(`Ahmets attracted to ${currentCam}! Count: ${this.locationAttractCount[currentCam]}/${this.maxLocationAttractCount}`);
                 
                 // 更新EP位置记录
                 this.lastEpLocation = currentCam;
